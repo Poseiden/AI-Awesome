@@ -1,3 +1,5 @@
+```mermaid
+
 flowchart TB
 
 %% ========== LAYER 0：User Layer ==========
@@ -79,3 +81,4 @@ flowchart TB
 %% ========== LAYER 7：Output Layer ==========
     Output[最终输出\nAnswer / Action / Report]
     OpenAIAPI --> Output
+```
