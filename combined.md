@@ -1,82 +1,85 @@
 ```mermaid
 flowchart TB
+
   %% Top: User and App
-  User --> AppUI
-  User[User / Human]
-  AppUI[Application Layer (Web App / Chat)]
+  User[User] --> AppUI
+  AppUI[App Layer]
 
-  %% Request handling and prompt layer
+  %% Request and Prompt
   AppUI --> ReqHandler
-  ReqHandler[Request Handler (Session Auth Routing)] --> PromptLayer
-  PromptLayer[Prompt Build Layer (Task Context Examples Format Reasoning)]
+  ReqHandler[Request Handler] --> PromptLayer
+  PromptLayer[Prompt Builder]
 
-  %% Prompt engineering capability block
-  subgraph PromptEngineering [Prompt Engineering Capabilities]
+  %% Prompt Engineering
+  subgraph PromptEngine[Prompt Engineering]
     PE_Task[Task Design]
-    PE_Context[Context Engineering]
-    PE_Reference[Reference Injection]
+    PE_Context[Context Setup]
+    PE_Ref[Examples]
     PE_Format[Output Format]
-    PE_Reasoning[Reasoning Strategies]
+    PE_Reason[Reasoning Style]
   end
-  PromptLayer -. uses .-> PromptEngineering
+  PromptLayer -. uses .-> PromptEngine
 
-  %% RAG block
+  %% RAG
   PromptLayer --> RAG
-  subgraph RAG [RAG - Retrieval Augmented Generation]
-    Retriever[Retriever (BM25 or Dense)]
-    VectorDB[Vector DB (FAISS Milvus)]
-    Chunking[Chunking & Embedding]
-    Reranker[Reranker (Cross-Encoder)]
+  subgraph RAG[RAG]
+    Rag_Retriever[Retriever]
+    Rag_VectorDB[Vector DB]
+    Rag_Chunk[Chunking]
+    Rag_Rerank[Reranker]
   end
   RAG --> EnhancedContext[Enhanced Context]
 
-  %% Inference layer
-  EnhancedContext --> LLMInference
-  PromptLayer --> LLMInference
-  LLMInference[LLM Inference (Llama Qwen GPT vLLM)]
+  %% Inference
+  EnhancedContext --> LLM
+  PromptLayer --> LLM
+  LLM[LLM Inference]
 
-  subgraph InferenceDetails [Inference Capabilities]
-    vllm[PagedAttention / vLLM]
-    Quant[Quantization / Q4 GGUF]
-    Cache[KV Cache]
-    Parallel[Parallel Inference]
+  subgraph InferenceSys[Inference System]
+    Inf_vllm[vLLM]
+    Inf_Quant[Quantization]
+    Inf_Cache[KV Cache]
+    Inf_Parallel[Parallel Exec]
   end
-  LLMInference -. uses .-> InferenceDetails
+  LLM -. uses .-> InferenceSys
 
-  %% Agents and tools
-  LLMInference --> AgentLayer
-  AgentLayer[Agent and ToolChain Layer]
+  %% Agents and Tools
+  LLM --> AgentLayer
+  AgentLayer[Agent Layer]
 
-  subgraph AgentSystem [Agent Engineering]
-    ToolDesign[Tool Design (Search DB API)]
-    Routing[Agent Routing Patterns]
-    Planning[Plan and Execute]
+  subgraph AgentSys[Agent System]
+    Agent_ToolDesign[Tool Design]
+    Agent_Routing[Routing]
+    Agent_Planning[Planning]
   end
-  AgentLayer -. uses .-> AgentSystem
-  AgentLayer --> ExternalTools[External Tools and Services]
+  AgentLayer -. uses .-> AgentSys
 
-  %% Output and evaluation
+  AgentLayer --> Tools[External Tools]
+
+  %% Output
   AgentLayer --> Output
-  Output[Generated Output (Answer Action Report)] --> Evaluation
-  subgraph EvalSystem [Evaluation System]
-    EvalHuman[Human Evaluation]
-    EvalLLM[Model-as-Judge Evaluation]
-    EvalAuto[Automated Tests and Benchmarks]
-  end
-  Evaluation[Evaluation and Feedback] -.-> PromptLayer
+  Output[Output] --> Eval
 
-  %% Skill mapping
-  subgraph SkillTree [Engineer Skill Map]
-    ST_Prompt[Prompt Engineering]
-    ST_RAG[RAG Pipeline]
-    ST_Agent[Agents and Tools]
-    ST_Inference[LLM Inference Optimization]
-    ST_Engineering[Engineering: API Observability]
+  subgraph EvalSys[Evaluation]
+    Eval_Human[Human Eval]
+    Eval_Model[Model Eval]
+    Eval_Auto[Auto Tests]
   end
 
-  PromptEngineering -. maps to .-> ST_Prompt
-  RAG -. maps to .-> ST_RAG
-  AgentSystem -. maps to .-> ST_Agent
-  InferenceDetails -. maps to .-> ST_Inference
-  ReqHandler -. maps to .-> ST_Engineering
-```
+  Eval[Evaluation] -. feedback .-> PromptLayer
+
+  %% Skill Map
+  subgraph SkillMap[Skill Map]
+    Skill_Prompt[Prompt Eng]
+    Skill_RAG[RAG]
+    Skill_Agent[Agents]
+    Skill_Infer[Inference]
+    Skill_Eng[Engineering]
+  end
+
+  PromptEngine -. maps .-> Skill_Prompt
+  RAG -. maps .-> Skill_RAG
+  AgentSys -. maps .-> Skill_Agent
+  InferenceSys -. maps .-> Skill_Infer
+  ReqHandler -. maps .-> Skill_Eng
+  ```
