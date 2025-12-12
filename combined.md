@@ -19,20 +19,23 @@ flowchart TB
     PE_Reason[Reasoning Style]
   end
   PromptLayer -. uses .-> PromptEngine
+  PromptLayer --> EnhancedContext[Enhanced Context]
 
   %% RAG
-  PromptLayer --> RAG
+  RAGLayer[RAGLayer]
+  PromptLayer --> RAGLayer
+  RAGLayer -. uses .-> RAG
   subgraph RAG[RAG]
     Rag_Retriever[Retriever]
     Rag_VectorDB[Vector DB]
     Rag_Chunk[Chunking]
     Rag_Rerank[Reranker]
+    Rag_Embedding[Embedding]
   end
-  RAG --> EnhancedContext[Enhanced Context]
+  RAGLayer --> EnhancedContext[Enhanced Context]
 
   %% Inference
   EnhancedContext --> LLM
-  PromptLayer --> LLM
   LLM[LLM Inference]
 
   subgraph InferenceSys[Inference System]
@@ -70,11 +73,11 @@ flowchart TB
 
   %% Skill Map
   subgraph SkillMap[Skill Map]
+    Skill_Eng[Engineering]
     Skill_Prompt[Prompt Eng]
     Skill_RAG[RAG]
-    Skill_Agent[Agents]
     Skill_Infer[Inference]
-    Skill_Eng[Engineering]
+    Skill_Agent[Agents]
   end
 
   PromptEngine -. maps .-> Skill_Prompt
