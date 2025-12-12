@@ -19,20 +19,21 @@ flowchart TB
     PE_Reason[Reasoning Style]
   end
   PromptLayer -. uses .-> PromptEngine
+  PromptLayer -. queries .-> RAGLayer
   PromptLayer --> EnhancedContext[Enhanced Context]
 
   %% RAG
   RAGLayer[RAGLayer]
-  PromptLayer --> RAGLayer
   RAGLayer -. uses .-> RAG
   subgraph RAG[RAG]
     Rag_Retriever[Retriever]
     Rag_VectorDB[Vector DB]
     Rag_Chunk[Chunking]
     Rag_Rerank[Reranker]
-    Rag_Embedding[Embedding]
+    Rag_DocEmbedding[DocEmbedding]
+    Rag_QueEmbedding[QueEmbedding]
   end
-  RAGLayer --> EnhancedContext[Enhanced Context]
+  RAG --> EnhancedContext[Enhanced Context]
 
   %% Inference
   EnhancedContext --> LLM
