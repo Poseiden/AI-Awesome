@@ -49,8 +49,10 @@ flowchart TB
   LLM -. uses .-> InferenceSys
 
   %% Agents and Tools
-  LLM --> AgentLayer
+  EnhancedContext --> AgentLayer
+  LLM <--> AgentLayer
   AgentLayer[Agent Layer]
+  
 
   subgraph AgentSys[Agent System]
     Agent_ToolDesign[Tool Design]
@@ -60,6 +62,7 @@ flowchart TB
   AgentLayer -. uses .-> AgentSys
 
   AgentLayer --> Tools[External Tools]
+  Tools --> AgentLayer
 
   %% Output
   AgentLayer --> Output
@@ -96,4 +99,6 @@ flowchart TB
 3. 在RAG中加入隐含链路（DocEmbedding，QueEmbedding）
 4. 修改LLM层和AgentLayer层的关系
 5. 增加Memory? Guardrail/Saftey?
-6. 将这张图落地为代码结构（PromptBuilder/RAGService/AgentLoop）
+6. Agent Loop 细化成Planner/Executor/Memory
+7. 给EnhancedContext 定义一个“结构契约（schema）”
+8. 将这张图落地为代码结构（PromptBuilder/RAGService/AgentLoop）
