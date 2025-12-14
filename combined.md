@@ -87,3 +87,12 @@ flowchart TB
   InferenceSys -. maps .-> Skill_Infer
   ReqHandler -. maps .-> Skill_Eng
   ```
+
+## ToDo
+#### Fix
+1. PromptLayer 映射到Engineering ＋ Prompt
+2. EnhancedContext 映射到Engineering ＋ Prompt
+3. 在RAG中加入隐含链路（DocEmbedding，QueEmbedding）
+4. 修改LLM层和AgentLayer层的关系
+5. 增加Memory? Guardrail/Saftey?
+6. 将这张图落地为代码结构（PromptBuilder/RAGService/AgentLoop）
