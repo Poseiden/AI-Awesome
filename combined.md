@@ -1,3 +1,5 @@
+## Combined Architecture
+
 ```mermaid
 flowchart TB
 
@@ -33,7 +35,6 @@ flowchart TB
     Rag_DocEmbedding[DocEmbedding]
     Rag_QueEmbedding[QueEmbedding]
   end
-  RAG --> EnhancedContext[Enhanced Context]
 
   %% Inference
   EnhancedContext --> LLM
