@@ -96,10 +96,9 @@ flowchart TB
 ## ToDo
 #### Fix
 1. ~~PromptLayer 映射到Engineering ＋ Prompt~~
-2. EnhancedContext 映射到Engineering ＋ Prompt
-3. 在RAG中加入隐含链路（DocEmbedding，QueEmbedding）（***Optional***）
-4. ~~修改LLM层和AgentLayer层的关系~~
-5. 增加Memory? Guardrail/Saftey?
-6. Agent Loop 细化成Planner/Executor/Memory
-7. 给EnhancedContext 定义一个“结构契约（schema）”
-8. 将这张图落地为代码结构（PromptBuilder/RAGService/AgentLoop）
+2. 在RAG中加入隐含链路（DocEmbedding，QueEmbedding）（***Optional***）
+3. ~~修改LLM层和AgentLayer层的关系~~
+4. 增加Memory? Guardrail/Saftey?
+5. Agent Loop 细化成Planner/Executor/Memory
+6. 给EnhancedContext 定义一个“结构契约（schema）”
+7. 将这张图落地为代码结构（PromptBuilder/RAGService/AgentLoop）
