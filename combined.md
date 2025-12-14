@@ -10,7 +10,7 @@ flowchart TB
   %% Request and Prompt
   AppUI --> ReqHandler
   ReqHandler[Request Handler] --> PromptLayer
-  PromptLayer[Prompt Builder]
+  PromptLayer[Prompt Runtime/Builder]
 
   %% Prompt Engineering
   subgraph PromptEngine[Prompt Engineering]
@@ -86,6 +86,7 @@ flowchart TB
   end
 
   PromptEngine -. maps .-> Skill_Prompt
+  PromptEngine -. maps .-> Skill_Eng
   RAG -. maps .-> Skill_RAG
   AgentSys -. maps .-> Skill_Agent
   InferenceSys -. maps .-> Skill_Infer
@@ -94,10 +95,10 @@ flowchart TB
 
 ## ToDo
 #### Fix
-1. PromptLayer 映射到Engineering ＋ Prompt
+1. ~~PromptLayer 映射到Engineering ＋ Prompt~~
 2. EnhancedContext 映射到Engineering ＋ Prompt
-3. 在RAG中加入隐含链路（DocEmbedding，QueEmbedding）
-4. 修改LLM层和AgentLayer层的关系
+3. 在RAG中加入隐含链路（DocEmbedding，QueEmbedding）（***Optional***）
+4. ~~修改LLM层和AgentLayer层的关系~~
 5. 增加Memory? Guardrail/Saftey?
 6. Agent Loop 细化成Planner/Executor/Memory
 7. 给EnhancedContext 定义一个“结构契约（schema）”
