@@ -58,8 +58,12 @@ flowchart TB
     Agent_ToolDesign[Tool Design]
     Agent_Routing[Routing]
     Agent_Planning[Planning]
+    Agent_Memory[Memory]
   end
   AgentLayer -. uses .-> AgentSys
+  AgentLayer --> Agent_Memory
+  Agent_Memory --> AgentLayer
+  AgentLayer --> EnhancedContext
 
   AgentLayer --> Tools[External Tools]
   Tools --> AgentLayer
@@ -98,7 +102,8 @@ flowchart TB
 1. ~~PromptLayer 映射到Engineering ＋ Prompt~~
 2. 在RAG中加入隐含链路（DocEmbedding，QueEmbedding）（***Optional***）
 3. ~~修改LLM层和AgentLayer层的关系~~
-4. 增加Memory? Guardrail/Saftey?
-5. Agent Loop 细化成Planner/Executor/Memory
-6. 给EnhancedContext 定义一个“结构契约（schema）”
-7. 将这张图落地为代码结构（PromptBuilder/RAGService/AgentLoop）
+4. ~~增加Memory~~
+5. 增加 Guardrail/Saftey
+6. Agent Loop 细化成Planner/Executor/Memory
+7. 给EnhancedContext 定义一个“结构契约（schema）”
+8. 将这张图落地为代码结构（PromptBuilder/RAGService/AgentLoop）
