@@ -108,5 +108,5 @@ flowchart TB
 4. ~~增加Memory~~
 5. ~~加 Guardrail/Saftey~~
 6. Agent Loop 细化成Planner/Executor/Memory （***Optional***）
-7. 给EnhancedContext 定义一个“结构契约（schema）”
+7. ~~给EnhancedContext 定义一个“结构契约（schema）”~~
 8. 将这张图落地为代码结构（PromptBuilder/RAGService/AgentLoop）
