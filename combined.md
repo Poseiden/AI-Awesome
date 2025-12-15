@@ -9,7 +9,8 @@ flowchart TB
 
   %% Request and Prompt
   AppUI --> ReqHandler
-  ReqHandler[Request Handler] --> PromptLayer
+  ReqHandler[Request Handler] --> InputGuard
+  InputGuard --> PromptLayer
   PromptLayer[Prompt Runtime/Builder]
 
   %% Prompt Engineering
@@ -71,6 +72,8 @@ flowchart TB
   %% Output
   AgentLayer --> Output
   Output[Output] --> Eval
+  Output --> OutputGuard[Output Guardrail]
+  OutputGuard --> User
 
   subgraph EvalSys[Evaluation]
     Eval_Human[Human Eval]
@@ -103,7 +106,7 @@ flowchart TB
 2. 在RAG中加入隐含链路（DocEmbedding，QueEmbedding）（***Optional***）
 3. ~~修改LLM层和AgentLayer层的关系~~
 4. ~~增加Memory~~
-5. 增加 Guardrail/Saftey
+5. ~~加 Guardrail/Saftey~~
 6. Agent Loop 细化成Planner/Executor/Memory
 7. 给EnhancedContext 定义一个“结构契约（schema）”
 8. 将这张图落地为代码结构（PromptBuilder/RAGService/AgentLoop）
