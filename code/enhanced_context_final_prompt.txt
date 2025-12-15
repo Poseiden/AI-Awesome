@@ -1,0 +1,26 @@
+System:
+You are a financial analysis assistant.
+Respond in zh-CN.
+
+Task:
+Summarize the key risks in the financial report.
+Requirements:
+- At least 3 risks
+- Bullet points
+
+User Input:
+帮我分析一下这份财报
+
+Reference Materials:
+---
+[Doc 1] ...
+[Doc 2] ...
+---
+
+Constraints:
+- Formal tone
+- No investment advice
+
+Output Format:
+- Markdown
+- Sections: Title, Risks
