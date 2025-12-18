@@ -41,3 +41,20 @@ def chunk_text(
         idx += 1
 
     return chunks
+
+
+
+# run test code.
+
+if __name__ == "__main__":
+    sample = """
+    RAG（Retrieval-Augmented Generation）是一种结合向量检索与生成模型的架构，
+    通过从知识库检索相关内容提升模型输出质量。
+    """
+
+    chunks = chunk_text(sample, source="test")
+
+    for c in chunks:
+        print("---")
+        print(f"id: {c.id}")
+        print(c.content)
