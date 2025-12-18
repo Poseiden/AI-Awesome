@@ -22,6 +22,7 @@ def chunk_text(
     idx = 0
 
     while start < len(text):
+        print("-=＆＆＆＆＆＆＆＆＝")
         end = start + chunk_size
         content = text[start:end]
 
