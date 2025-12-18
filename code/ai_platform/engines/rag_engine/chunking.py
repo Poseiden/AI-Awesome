@@ -14,15 +14,14 @@ class Chunk:
 def chunk_text(
     text: str,
     source: str,
-    chunk_size: int = 300,
-    overlap: int = 50
+    chunk_size: int = 15,
+    overlap: int = 8 
 ):
     chunks = []
     start = 0
     idx = 0
 
     while start < len(text):
-        print("-=＆＆＆＆＆＆＆＆＝")
         end = start + chunk_size
         content = text[start:end]
 
