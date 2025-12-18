@@ -58,3 +58,5 @@ if __name__ == "__main__":
         print("---")
         print(f"id: {c.id}")
         print(c.content)
+        print(c.source)
+        print(c.metadata)
